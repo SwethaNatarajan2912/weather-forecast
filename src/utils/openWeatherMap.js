@@ -1,8 +1,11 @@
 const request = require('request')
+const path=require('path');
+require('dotenv').config({path:'C:\\web-server\\web-server\\src\\utils\\.env'});
+const apikey = process.env.API_KEY
 
 const openWeatherMap = (address, callback) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(address)}&appid=d016bc53af4a04d471bd95cb8806fa18`
-
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(address)}&appid=${apikey}`
+console.log(url);
     request({ url, json: true }, (error, {body}) => {
         if (error) {
             callback('Unable to connect to location services!', undefined)
